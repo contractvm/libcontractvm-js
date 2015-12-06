@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/jquery-jsonrpc/jquery.jsonrpc.js"></script>
+  <script type="text/javascript" src="../cvm.js"></script>
+</head>
+<body>
+
+<table>
+	<thead>
+		 <tr><th>ID</th><th>Title</th></tr>
+	</thead>
+	<tbody id="posts">
+	</tbody>
+</table>
+
+<script>
+	var posts = cvm.jsonLocalCall ('forum.getpostlist', [], function (err, data){
+		$('#posts').empty ();
+		$.each (data, function (){
+			$('#posts').append ('<tr><td>'+this['id']+'</td><td>'+this['title']+'</td></tr>');
+		});
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/jquery-jsonrpc/jquery.jsonrpc.js"></script>
+  <script type="text/javascript" src="../cvm.js"></script>
+</head>
+<body>
+
+<h1>Contractvm <span id="version"></span></h1>
+
+<b>Chain:</b> <span id="chain"></span><br>
+<b>Chain height:</b> <span id="height"></span><br>
+
+<br>
+<table>
+	<tr><td><b>DAPP</b></td></tr>
+	<tbody id="dapps">
+	</tbody>
+</table>
+
+<script>
+	var posts = cvm.jsonLocalCall ('info', [], function (err, data){
+		$('#chain').html (data.chain.name + ' (' + data.chain.code + ')');
+		$('#height').html (data.chain.height);
+		$('#version').html (data.node.version);
+
+		$('#dapps').empty ();
+		$.each (data.node.dapps.enabled, function (k, v) {
+			console.log (k,v);
+			$('#dapps').append ('<tr><td>'+v+'</td></tr>');
+		});
+	});
+</script>
+
+</body>
+</html>
