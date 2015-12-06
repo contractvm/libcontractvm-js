@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>DAPP: StudentReg</title>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/jquery-jsonrpc/jquery.jsonrpc.js"></script>
+  <script type="text/javascript" src="../cvm.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<h1>DAPP: StudentReg</h1>
+		<table class="table">
+			<thead>
+				 <tr><th>Student ID</th><th>Lecture</th><th>Comment</th></tr>
+			</thead>
+			<tbody id="regs">
+			</tbody>
+		</table>
+	</div>
+<script>
+	var posts = cvm.jsonLocalCall ('studentreg.getlist', [], function (err, data){
+		$('#regs').empty ();
+		$.each (data, function (){
+			$('#regs').append ('<tr><td>'+this['studentid']+'</td><td>'+this['lecture']+'</td><td>'+this['comment']+'</td></tr>');
+		});
+	});
+</script>
+
+</body>
+</html>

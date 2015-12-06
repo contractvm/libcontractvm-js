@@ -2,23 +2,26 @@
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <title>DAPP: Node Stats</title>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../bower_components/jquery-jsonrpc/jquery.jsonrpc.js"></script>
   <script type="text/javascript" src="../cvm.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<div class="container">
+		<h1>Contractvm <span id="version"></span></h1>
 
-<h1>Contractvm <span id="version"></span></h1>
+		<b>Chain:</b> <span id="chain"></span><br>
+		<b>Chain height:</b> <span id="height"></span><br>
 
-<b>Chain:</b> <span id="chain"></span><br>
-<b>Chain height:</b> <span id="height"></span><br>
-
-<br>
-<table>
-	<tr><td><b>DAPP</b></td></tr>
-	<tbody id="dapps">
-	</tbody>
-</table>
+		<br>
+		<table class="table">
+			<tr><td><b>DAPP</b></td></tr>
+			<tbody id="dapps">
+			</tbody>
+		</table>
+	</div>
 
 <script>
 	var posts = cvm.jsonLocalCall ('info', [], function (err, data){
